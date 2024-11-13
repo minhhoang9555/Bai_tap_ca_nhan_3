@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Music Library</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        body {
+            background-image: url('https://wallpapers.com/images/featured/4k-background-fd313fxzl511betu.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .login-container {
+            max-width: 400px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            padding: 12px;
+            width: 100%;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            background-color: #2575fc;
+            border-color: #2575fc;
+            padding: 12px;
+            width: 100%;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #6a11cb;
+            border-color: #6a11cb;
+            transform: scale(1.05);  /* Hiệu ứng phóng to */
+        }
+
+        .link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .link a {
+            color: #2575fc;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to Music Library</h2>
+
+        <!-- Thông báo lỗi -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{ messages[0][1] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <div class="link">
+            <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+        </div>
+    </div>
+
+    <!-- Tích hợp JavaScript của Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+@app.route('/add_song', methods=['POST'])
+@login_required
+def add_song():
+    # Lấy dữ liệu từ form
+    title = request.form['title']
+    artist = request.form['artist']
+    file_path = request.form['file_path']
+
+    # Tạo và thêm bài hát mới vào cơ sở dữ liệu
+    new_song = Song(title=title, artist=artist, file_path=file_path)
+    db.session.add(new_song)
+    db.session.commit()
+
+    # Hiển thị thông báo và quay lại trang chủ
+    flash('Song added successfully!', 'success')
+    return redirect(url_for('index'))
